@@ -1,0 +1,14 @@
+ssh/*
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/
+.sass-cache/
+.redcar/*
+.DS_Store
+._redcar/*
+.project
+coverage
+test/vcr_cassettes
+test/vcr_cassettes/*
+.idea/
