@@ -8,8 +8,7 @@ describe 'user actions' do
         start_session
         visit_homepage
         visit_login_page
-        login_with_no_email_fail 
-        verify_unsuccessful_login_with_no_email
+        login_with_no_password_fail 
       end
 
       it 'should prompt Invalid Username/Password' do
