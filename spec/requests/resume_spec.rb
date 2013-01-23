@@ -22,7 +22,7 @@ describe 'resume_spec_tests' do
 			visit_homepage
 			login_user
 			navigate_through_my_profile_to_resume_add_update
-			verify_create_new_resume
+			verify_create_new_resume_link
 			logout_user
 
 		end
@@ -42,26 +42,27 @@ describe 'resume_spec_tests' do
 			login_user
 			navigate_through_my_profile_to_resume_add_update
 			verify_add_resume
-			verify_add_resume_submission
 			logout_user
 		end
 	end
 
 	describe 'resume actions UPLOAD TAB', :js => true do
 
-		it 'should be able to upload a resume and save' do
+		it 'should be able to check upload a resume ' do
 			visit_homepage
 			login_user
 			visit_homepage
 			navigate_through_upload_resume_to_resume_add_update
+			verify_upload_resume
 			logout_user
 		end
 
+		#check to see if adding a resume thru create new resume link
 		it 'should check link create a new resume ' do
 			visit_homepage
 			login_user
 			navigate_through_my_profile_to_resume_add_update
-			verify_create_new_resume
+			verify_create_new_resume_link
 			logout_user
 
 		end

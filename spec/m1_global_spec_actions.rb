@@ -80,20 +80,13 @@ def logout_user
 	end
 end
 
-def forgot_password
-	visit_login_page
-	page.click_link('Forgot password')
-	page.fill_in('txtEmail', :with => 'capybarauser@gmail.com')
-	page.click_button('emailSubmit')
-end
-
 def verify_login_page
 	page.should have_css('#user_email')
 	page.should have_css('#user_password')
 	page.should have_button(I18n.t('lg_loginbtn'))
 end
 
-def login_with_no_email_fail 
+def login_with_no_password_fail 
 	fill_in 'user_email', :with => 'capybarausergmail.com'
 	fill_in 'user_password', :with => ''
 	click_button(I18n.t('lg_loginbtn'))
@@ -246,9 +239,6 @@ end
 ### 		ADD/UPLOAD RESUME FUNCTIONS  		###
 ###################################################
 
-def verify_add_resume_submission
-	page.should have_css('#flash_notice')
-end
 
 def navigate_directly_to_resume_upload
 	visit '/resume/upload'
@@ -277,6 +267,7 @@ end
 def verify_add_resume
 	click_link(I18n.t('res_upload_create_resume_link'))
 	click_button(I18n.t('res_add_page_create'))
+	page.should have_css('#flash_notice')
 end
 
 
@@ -286,7 +277,12 @@ def upload_my_resume
 	click_button(I18n.t('res_upload_page_upload'))
 end
 
-def verify_create_new_resume
+def verify_upload_resume
+	page.should have_css(I18n.t('res_upload_create_resume_link'))
+end
+
+
+def verify_create_new_resume_link
 	click_link(I18n.t('res_upload_create_resume_link'))
 	page.should have_content(I18n.t('res_add_page_h3'))
 end
