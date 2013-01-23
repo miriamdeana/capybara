@@ -145,7 +145,7 @@ end
 ##########################################
 
 def visit_register_page
-  page.find('.M1navRightOptions').all('a')[1].click
+  page.all('#M1_quick_links')[0].all('li')[5].find('a').click
   first('title')[:text] == I18n.t('rg_page_title')
   page.should have_css('#Register.borderbox.formpage')
 end
@@ -162,11 +162,12 @@ def register_existing_user
   fill_in 'zip', :with =>'00000'
   find("option[value='US']").click
   find('.actionrow').click_on 'register'
+  page.should have_css('#flash_notice')
 end
 
 def complete_register_info
-  fill_in 'em_1', :with => 'joe@ymail.com'
-  fill_in 'em_2', :with => 'joe@ymail.com'
+  fill_in 'em_1', :with => 'jo@ymail.com'
+  fill_in 'em_2', :with => 'jo@ymail.com'
   fill_in 'pss_1', :with => 'passw0rd'
   fill_in 'pss_2', :with => 'passw0rd'
   fill_in 'user_first_name', :with => 'first'
@@ -175,8 +176,7 @@ def complete_register_info
   fill_in 'stateField', :with => 'PA'
   fill_in 'zip', :with => '19141'
   find("option[value='US']").click
-  find('.actionrow').click_on 'register'
-  page.should have_css('#flash_success_message')
+  #find('.actionrow').click_on 'register'
 end
 
 def do_not_complete_register_info
@@ -189,8 +189,8 @@ def do_not_complete_register_info
   fill_in 'zip', :with => '19141'
   find("option[value='US']").click
   find('.actionrow').click_on 'register'
-  page.should have_css('#flash_notice')
-  page.should have_content(I18n.t('rg_page_existing_acct'))
+  page.has_css?('#pss_1.required_input')
+  page.has_css?('.required_message')
 end
 
 

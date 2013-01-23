@@ -30,6 +30,7 @@ describe 'user actions' do
         start_session
         visit_register_page
         register_existing_user
+        visit_register_page
         do_not_complete_register_info
         complete_register_info
       end
